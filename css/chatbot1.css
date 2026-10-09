@@ -1,0 +1,28 @@
+/* DT AI v2: scoped to avoid conflicts with MYWEB */
+.dt-chatbot{--dt-bg:#0d1b30;--dt-text:#f4f7ff;--dt-border:rgba(120,160,220,.2);position:fixed;right:24px;bottom:24px;z-index:9999;font-family:"Be Vietnam Pro",system-ui,sans-serif;color:var(--dt-text)}
+.dt-chatbot button,.dt-chatbot input{font:inherit}
+.dt-mascot{height:66px;width:66px;border-radius:22px;border:1px solid #42cfe777;background:linear-gradient(135deg,#0d1b30,#302052);color:#76e6ff;cursor:pointer;box-shadow:0 8px 30px #0005;animation:dt-float 3s ease-in-out infinite}
+.dt-mascot-face{font-size:22px;font-weight:900;letter-spacing:-2px}.dt-mascot:hover{box-shadow:0 0 24px #42cfe777}
+@keyframes dt-float{50%{translate:0 -6px}}
+.dt-chat-window{position:absolute;bottom:82px;right:0;width:min(380px,calc(100vw - 32px));height:min(550px,calc(100dvh - 110px));display:flex;flex-direction:column;background:var(--dt-bg);color:var(--dt-text);border:1px solid var(--dt-border);border-radius:20px;overflow:hidden;box-shadow:0 24px 65px #0007;opacity:0;visibility:hidden;transform:translateY(12px) scale(.97);transition:.22s ease;pointer-events:none}
+.dt-chatbot.active .dt-chat-window{opacity:1;visibility:visible;transform:none;pointer-events:auto}
+.dt-chat-header{padding:14px;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(110deg,#1a3751,#302052);border-bottom:1px solid var(--dt-border)}
+.dt-chat-title{display:flex;gap:10px;align-items:center}.dt-chat-avatar{width:38px;height:38px;display:grid;place-items:center;border-radius:12px;background:#48d7e722;color:#83efff;font-weight:800}
+.dt-chat-name{display:grid;gap:3px}.dt-chat-name strong{font-size:14px}.dt-chat-status{font-size:11px;color:#a8e8d3}.dt-chat-actions{display:flex;gap:5px}
+.dt-chat-actions button{border:0;border-radius:9px;background:#ffffff13;color:inherit;cursor:pointer;padding:7px 10px}
+.dt-chat-messages{flex:1;min-height:0;overflow:auto;padding:15px;display:flex;flex-direction:column;gap:12px;scrollbar-width:thin}
+.dt-message{max-width:85%;align-self:flex-start;padding:11px 13px;white-space:pre-line;overflow-wrap:anywhere;font-size:12px;line-height:1.65;background:#ffffff0b;border:1px solid var(--dt-border);border-radius:15px 15px 15px 4px}
+.dt-message.user{align-self:flex-end;background:linear-gradient(130deg,#077b9680,#6535b580);border-radius:15px 15px 4px 15px}.dt-thinking{opacity:.65;font-style:italic}
+.dt-quick-actions{display:flex;gap:7px;padding:10px;overflow:auto;scrollbar-width:thin;border-top:1px solid var(--dt-border)}
+.dt-quick-btn{flex-shrink:0;border:1px solid var(--dt-border);background:#ffffff0b;color:inherit;border-radius:12px;padding:8px 10px;font-size:11px;cursor:pointer}
+.dt-quick-btn:hover{border-color:#42cfe7}
+.dt-chat-input-area{display:flex;gap:8px;padding:10px;border-top:1px solid var(--dt-border)}
+.dt-chat-input{min-width:0;flex:1;background:#ffffff0a;color:inherit;border:1px solid var(--dt-border);border-radius:11px;padding:11px;font-size:12px;outline:0}
+.dt-chat-input:focus{border-color:#42cfe7}.dt-chat-send{border:0;border-radius:11px;background:linear-gradient(120deg,#078ba7,#7541d4);color:white;padding:0 15px;cursor:pointer}
+body.light .dt-chatbot,body.light-mode .dt-chatbot,[data-theme="light"] .dt-chatbot{--dt-bg:#fff;--dt-text:#172033;--dt-border:#d9e3ee}
+body.light .dt-chat-header,body.light-mode .dt-chat-header,[data-theme="light"] .dt-chat-header{background:linear-gradient(110deg,#e6f7fa,#f1eafd)}
+body.light .dt-chat-input,body.light-mode .dt-chat-input,[data-theme="light"] .dt-chat-input{background:#f5f8fd}
+body.light .dt-message,body.light-mode .dt-message,[data-theme="light"] .dt-message{background:#f1f5fa}
+body.light .dt-message.user,body.light-mode .dt-message.user,[data-theme="light"] .dt-message.user{background:#dce8ff}
+@media(max-width:600px){.dt-chatbot{right:16px;bottom:16px}.dt-chat-window{height:min(550px,calc(100dvh - 100px))}}
+@media(prefers-reduced-motion:reduce){.dt-mascot{animation:none}.dt-chat-window{transition:none}}

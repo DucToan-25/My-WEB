@@ -11,12 +11,13 @@
 
     <title>Đức Toàn</title>
 
-    <link rel="icon" type="image/png" href="image/logo1.png">
+    <link rel="icon" type="image/png" href="image/logo.png">
 
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/status.css">
+    <link rel="stylesheet" href="css/chatbot1.css">
 
     <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -158,6 +159,10 @@
 
                 <a href="../view/email.html" aria-label="Email">
                     <i class="fa-solid fa-envelope"></i>
+                </a>
+
+                <a href="yeu/love.html" aria-label="love">
+                    <i class="fa-solid" ><img src="image/logo.png"></i>
                 </a>
 
             </div>
@@ -872,6 +877,162 @@
 
 
 <script src="js/main-obfuscated.js"></script>
+
+
+<!-- =====================================================
+     ĐT AI ASSISTANT V2
+     MYWEB - ĐỨC TOÀN
+===================================================== -->
+
+<div class="dt-chatbot" id="dtChatbot">
+
+    <!-- ================= MASCOT ================= -->
+
+    <button
+        class="dt-mascot"
+        id="dtMascot"
+        type="button"
+        aria-label="Mở trợ lý ĐT AI"
+        aria-controls="dtChatPanel"
+        aria-expanded="false"
+    >
+        <span class="dt-mascot-face">
+            <span class="dt-mascot-logo">ĐT</span>
+        </span>
+    </button>
+
+
+    <!-- ================= CHAT WINDOW ================= -->
+
+    <section
+        class="dt-chat-window"
+        id="dtChatPanel"
+        aria-label="ĐT AI Assistant"
+        aria-hidden="true"
+    >
+
+        <!-- HEADER -->
+
+        <header class="dt-chat-header">
+
+            <div class="dt-chat-title">
+
+                <div class="dt-chat-avatar">
+                    ĐT
+                </div>
+
+                <div class="dt-chat-name">
+
+                    <strong>
+                        ĐT AI Assistant
+                    </strong>
+
+                    <span class="dt-chat-status">
+                        <span class="dt-status-dot"></span>
+                        Trợ lý thông tin MYWEB
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- HEADER ACTIONS -->
+
+            <div class="dt-chat-actions">
+
+                <button
+                    id="dtClear"
+                    type="button"
+                    aria-label="Xóa hội thoại"
+                    title="Làm mới hội thoại"
+                >
+                    ↺
+                </button>
+
+                <button
+                    class="dt-chat-close"
+                    id="dtChatClose"
+                    type="button"
+                    aria-label="Đóng chatbot"
+                    title="Đóng chatbot"
+                >
+                    ×
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- ================= MESSAGES ================= -->
+
+        <div
+            class="dt-chat-messages"
+            id="dtChatMessages"
+            role="log"
+            aria-live="polite"
+            aria-relevant="additions text"
+        >
+            <!--
+                Tin nhắn chào mừng và hội thoại
+                được chatbot.js khởi tạo tự động.
+            -->
+        </div>
+
+
+        <!-- ================= QUICK QUESTIONS ================= -->
+
+        <div
+            class="dt-quick-actions"
+            id="dtSuggestions"
+            aria-label="Câu hỏi gợi ý"
+        >
+            <!--
+                JavaScript tự tạo câu hỏi gợi ý
+                dựa trên nội dung hội thoại.
+            -->
+        </div>
+
+
+        <!-- ================= CHAT INPUT ================= -->
+
+        <form
+            class="dt-chat-input-area"
+            id="dtChatForm"
+        >
+
+            <input
+                type="text"
+                class="dt-chat-input"
+                id="dtChatInput"
+                placeholder="Hỏi ĐT AI..."
+                aria-label="Nhập câu hỏi"
+                autocomplete="off"
+                maxlength="500"
+            >
+
+            <button
+                class="dt-chat-send"
+                type="submit"
+                aria-label="Gửi tin nhắn"
+                title="Gửi tin nhắn"
+            >
+                ➤
+            </button>
+
+        </form>
+
+    </section>
+
+</div>
+
+<!-- =====================================================
+     END ĐT AI ASSISTANT
+===================================================== -->
+
+<script src="js/chatbot1.js"></script>
+
 
 </body>
 </html>
