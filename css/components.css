@@ -1,5 +1,5 @@
 /* ================= HERO ================= */
-.hero {item
+.hero {
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -795,7 +795,7 @@
 /* ================= BACK TO TOP ================= */
 .back-to-top {
     position: fixed;
-    right: 25px;
+    right: 105px;
     bottom: 25px;
     width: 42px;
     height: 42px;

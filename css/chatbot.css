@@ -1,0 +1,629 @@
+/* =========================================================
+   ĐT AI CHATBOT
+   MYWEB - Đức Toàn
+========================================================= */
+
+/* ================= CHATBOT CONTAINER ================= */
+
+.dt-chatbot {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 9999;
+    font-family: "Be Vietnam Pro", sans-serif;
+}
+
+/* ================= MASCOT ================= */
+
+.dt-mascot {
+    width: 64px;
+    height: 64px;
+
+    border: 1px solid rgba(0, 229, 255, 0.45);
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(0, 229, 255, 0.12),
+            rgba(124, 58, 237, 0.15)
+        ),
+        rgba(8, 18, 33, 0.88);
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.25),
+        0 0 18px rgba(0, 229, 255, 0.12);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+
+    animation: dtMascotFloat 3.5s ease-in-out infinite;
+}
+
+.dt-mascot:hover {
+    transform: translateY(-5px) scale(1.05);
+
+    border-color: rgba(0, 229, 255, 0.8);
+
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.3),
+        0 0 25px rgba(0, 229, 255, 0.25),
+        0 0 45px rgba(124, 58, 237, 0.12);
+}
+
+/* ================= MASCOT FACE ================= */
+
+.dt-mascot-face {
+    width: 43px;
+    height: 43px;
+
+    border-radius: 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0, 229, 255, 0.16),
+            rgba(124, 58, 237, 0.22)
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    box-shadow:
+        inset 0 0 15px rgba(0, 229, 255, 0.08);
+}
+
+/* Logo ĐT */
+
+.dt-mascot-logo {
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: -1px;
+
+    background: linear-gradient(
+        135deg,
+        #00e5ff,
+        #8b5cf6
+    );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Eyes */
+
+.dt-mascot-face::before,
+.dt-mascot-face::after {
+    content: "";
+
+    position: absolute;
+
+    width: 4px;
+    height: 4px;
+
+    border-radius: 50%;
+
+    background: #00e5ff;
+
+    box-shadow: 0 0 8px rgba(0, 229, 255, 0.8);
+}
+
+.dt-mascot-face::before {
+    top: 11px;
+    left: 11px;
+}
+
+.dt-mascot-face::after {
+    top: 11px;
+    right: 11px;
+}
+
+/* ================= FLOAT ANIMATION ================= */
+
+@keyframes dtMascotFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+}
+
+/* ================= CHAT WINDOW ================= */
+
+.dt-chat-window {
+    position: absolute;
+
+    right: 0;
+    bottom: 82px;
+
+    width: 360px;
+    max-width: calc(100vw - 32px);
+    height: 500px;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(0, 229, 255, 0.22);
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(13, 25, 42, 0.94),
+            rgba(8, 15, 28, 0.96)
+        );
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.4),
+        0 0 35px rgba(0, 229, 255, 0.08);
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(15px) scale(0.96);
+
+    transform-origin: bottom right;
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease,
+        visibility 0.25s ease;
+}
+
+.dt-chatbot.active .dt-chat-window {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+/* ================= CHAT HEADER ================= */
+
+.dt-chat-header {
+    min-height: 68px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 12px 16px;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0, 229, 255, 0.06),
+            rgba(124, 58, 237, 0.08)
+        );
+}
+
+.dt-chat-title {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+
+.dt-chat-avatar {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0, 229, 255, 0.15),
+            rgba(124, 58, 237, 0.2)
+        );
+
+    border: 1px solid rgba(0, 229, 255, 0.2);
+
+    color: #00e5ff;
+
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.dt-chat-name {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.dt-chat-name strong {
+    font-size: 14px;
+    color: var(--text, #ffffff);
+}
+
+.dt-chat-status {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    font-size: 10px;
+
+    color: #7dd3fc;
+}
+
+.dt-status-dot {
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: #22c55e;
+
+    box-shadow: 0 0 8px rgba(34, 197, 94, 0.7);
+}
+
+/* ================= CLOSE BUTTON ================= */
+
+.dt-chat-close {
+    width: 32px;
+    height: 32px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.05);
+
+    color: var(--text, #ffffff);
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.dt-chat-close:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: rotate(90deg);
+}
+
+/* ================= MESSAGES ================= */
+
+.dt-chat-messages {
+    flex: 1;
+
+    overflow-y: auto;
+
+    padding: 18px 14px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    scrollbar-width: thin;
+}
+
+.dt-message {
+    max-width: 82%;
+
+    padding: 10px 13px;
+
+    border-radius: 15px;
+
+    font-size: 12px;
+    line-height: 1.6;
+
+    color: var(--text, #ffffff);
+}
+
+.dt-message.bot {
+    align-self: flex-start;
+
+    border-bottom-left-radius: 5px;
+
+    background: rgba(255, 255, 255, 0.06);
+
+    border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.dt-message.user {
+    align-self: flex-end;
+
+    border-bottom-right-radius: 5px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0, 229, 255, 0.14),
+            rgba(124, 58, 237, 0.2)
+        );
+
+    border: 1px solid rgba(0, 229, 255, 0.15);
+}
+
+/* ================= QUICK QUESTIONS ================= */
+
+.dt-quick-actions {
+    display: flex;
+
+    gap: 7px;
+
+    padding: 0 14px 10px;
+
+    overflow-x: auto;
+}
+
+.dt-quick-btn {
+    flex-shrink: 0;
+
+    border: 1px solid rgba(0, 229, 255, 0.16);
+    border-radius: 10px;
+
+    padding: 7px 10px;
+
+    background: rgba(255, 255, 255, 0.035);
+
+    color: var(--text, #ffffff);
+
+    font-family: inherit;
+    font-size: 10px;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.dt-quick-btn:hover {
+    border-color: rgba(0, 229, 255, 0.45);
+
+    background: rgba(0, 229, 255, 0.08);
+
+    transform: translateY(-1px);
+}
+
+/* ================= INPUT ================= */
+
+.dt-chat-input-area {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 10px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.dt-chat-input {
+    flex: 1;
+
+    min-width: 0;
+
+    height: 40px;
+
+    padding: 0 12px;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+
+    outline: none;
+
+    background: rgba(255, 255, 255, 0.045);
+
+    color: var(--text, #ffffff);
+
+    font-family: inherit;
+    font-size: 11px;
+
+    transition: 0.2s ease;
+}
+
+.dt-chat-input::placeholder {
+    color: rgba(255, 255, 255, 0.38);
+}
+
+.dt-chat-input:focus {
+    border-color: rgba(0, 229, 255, 0.4);
+
+    box-shadow:
+        0 0 0 3px rgba(0, 229, 255, 0.05);
+}
+
+/* ================= SEND BUTTON ================= */
+
+.dt-chat-send {
+    width: 40px;
+    height: 40px;
+
+    flex-shrink: 0;
+
+    border: none;
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #00bcd4,
+            #7c3aed
+        );
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+    transition: 0.2s ease;
+}
+
+.dt-chat-send:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 5px 18px rgba(0, 229, 255, 0.2);
+}
+
+/* ================= TYPING ================= */
+
+.dt-typing {
+    display: flex;
+    gap: 4px;
+
+    padding: 11px 13px;
+}
+
+.dt-typing span {
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: #00e5ff;
+
+    animation: dtTyping 1.2s infinite ease-in-out;
+}
+
+.dt-typing span:nth-child(2) {
+    animation-delay: 0.15s;
+}
+
+.dt-typing span:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+@keyframes dtTyping {
+
+    0%,
+    60%,
+    100% {
+        transform: translateY(0);
+        opacity: 0.4;
+    }
+
+    30% {
+        transform: translateY(-4px);
+        opacity: 1;
+    }
+}
+
+/* ================= LIGHT MODE ================= */
+
+body.light .dt-chat-window,
+[data-theme="light"] .dt-chat-window {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.96),
+            rgba(244, 248, 255, 0.97)
+        );
+
+    border-color: rgba(0, 150, 200, 0.2);
+
+    box-shadow:
+        0 25px 60px rgba(20, 40, 80, 0.18);
+}
+
+body.light .dt-mascot,
+[data-theme="light"] .dt-mascot {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(0, 229, 255, 0.08),
+            rgba(124, 58, 237, 0.08)
+        ),
+        rgba(255, 255, 255, 0.9);
+
+    border-color: rgba(0, 150, 200, 0.2);
+}
+
+body.light .dt-chat-input,
+[data-theme="light"] .dt-chat-input {
+    background: rgba(0, 0, 0, 0.035);
+
+    color: #172033;
+
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+body.light .dt-chat-input::placeholder,
+[data-theme="light"] .dt-chat-input::placeholder {
+    color: rgba(20, 30, 50, 0.4);
+}
+
+body.light .dt-message,
+[data-theme="light"] .dt-message {
+    color: #172033;
+}
+
+body.light .dt-message.bot,
+[data-theme="light"] .dt-message.bot {
+    background: rgba(0, 0, 0, 0.035);
+
+    border-color: rgba(0, 0, 0, 0.06);
+}
+
+body.light .dt-chat-close,
+[data-theme="light"] .dt-chat-close {
+    color: #172033;
+
+    background: rgba(0, 0, 0, 0.04);
+}
+
+body.light .dt-quick-btn,
+[data-theme="light"] .dt-quick-btn {
+    color: #172033;
+
+    background: rgba(0, 0, 0, 0.025);
+
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 600px) {
+
+    .dt-chatbot {
+        right: 16px;
+        bottom: 16px;
+    }
+
+    .dt-mascot {
+        width: 58px;
+        height: 58px;
+
+        border-radius: 18px;
+    }
+
+    .dt-chat-window {
+        right: 0;
+        bottom: 74px;
+
+        width: calc(100vw - 32px);
+
+        height: min(520px, calc(100vh - 110px));
+
+        border-radius: 19px;
+    }
+}
